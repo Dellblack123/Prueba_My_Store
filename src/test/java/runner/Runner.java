@@ -8,7 +8,8 @@ import pages.BasePage;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
-glue = "steps")
+glue = "steps",
+plugin = "pretty")
 public class Runner {
 
     @AfterClass
