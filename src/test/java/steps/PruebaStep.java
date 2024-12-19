@@ -65,13 +65,14 @@ public class PruebaStep {
 
     @Then("valido el titulo de la pagina del carrito")
     public void validoElTituloDeLaPaginaDelCarrito() {
-        //principal.waitForSeconds(5);
-        //carrito.validarTitulo();
+        principal.waitForSeconds(2);
+        carrito.validarTitulo();
     }
 
     @And("vuelvo a validar el calculo de precios en el carrito")
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
-        principal.waitForSeconds(5);
+        //principal.waitForSeconds(5);
+        carrito.validarMontoTotal();
         carrito.click(CarritoLocator.FINALIZAR_COMPRA);
     }
 

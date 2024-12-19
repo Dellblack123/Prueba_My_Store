@@ -70,4 +70,8 @@ public class BasePage {
         return text.replaceAll("[^\\d.]", ""); // Elimina todo excepto dígitos y punto decimal
     }
 
+    public String getInputValue(String locator) {
+        return find(locator).getAttribute("value");
+    }
+
 }
