@@ -1,17 +1,20 @@
 package steps;
 
+import Locators.CarritoLocator;
 import Locators.PrincipalLocator;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.checkerframework.checker.units.qual.C;
+import pages.BasePage;
 import pages.PaginaCarrito;
 import pages.PaginaPrincipal;
 
 public class PruebaStep {
 
     PaginaPrincipal principal = new PaginaPrincipal();
-    PaginaCarrito carrito;
+    PaginaCarrito carrito = new PaginaCarrito();
 
     @Given("estoy en la página de la tienda")
     public void estoyEnLaPáginaDeLaTienda() {
@@ -34,29 +37,42 @@ public class PruebaStep {
 
     @And("agrego {string} unidades del primer producto al carrito")
     public void agregoUnidadesDelPrimerProductoAlCarrito(String posicion) {
+        principal.waitForSeconds(5);
         principal.posarMouseItem();
+        principal.waitForSeconds(2);
         principal.clickVistaRapida();
+        principal.waitForSeconds(2);
+        principal.click(PrincipalLocator.AGREGAR_CARRO);
     }
 
     @Then("valido en el popup la confirmación del producto agregado")
     public void validoEnElPopupLaConfirmaciónDelProductoAgregado() {
+        principal.waitForSeconds(2);
+        principal.validarProducto();
     }
 
     @And("valido en el popup que el monto total sea calculado correctamente")
     public void validoEnElPopupQueElMontoTotalSeaCalculadoCorrectamente() {
+        principal.waitForSeconds(2);
+        principal.validarMontoTotal();
     }
 
     @When("finalizo la compra")
     public void finalizoLaCompra() {
+        principal.waitForSeconds(2);
+        principal.click(PrincipalLocator.FINALIZAR_COMPRA);
     }
 
     @Then("valido el titulo de la pagina del carrito")
     public void validoElTituloDeLaPaginaDelCarrito() {
+        //principal.waitForSeconds(5);
+        //carrito.validarTitulo();
     }
 
     @And("vuelvo a validar el calculo de precios en el carrito")
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
-
+        principal.waitForSeconds(5);
+        carrito.click(CarritoLocator.FINALIZAR_COMPRA);
     }
 
 }

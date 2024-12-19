@@ -52,4 +52,22 @@ public class BasePage {
         //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", locator);
         actiones.moveToElement(find(locator)).perform();
     }
+
+    public void waitForSeconds(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000); // Convierte segundos a milisegundos
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restaura el estado de interrupción
+            System.out.println("Error en la espera: " + e.getMessage());
+        }
+    }
+
+    public String getText(String locator){
+        return find(locator).getText();
+    }
+
+    public String extractNumeric(String text) {
+        return text.replaceAll("[^\\d.]", ""); // Elimina todo excepto dígitos y punto decimal
+    }
+
 }

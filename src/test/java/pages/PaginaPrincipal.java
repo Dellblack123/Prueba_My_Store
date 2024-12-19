@@ -1,6 +1,8 @@
 package pages;
 
+import Locators.CarritoLocator;
 import Locators.PrincipalLocator;
+import org.junit.Assert;
 
 public class PaginaPrincipal extends BasePage{
 
@@ -44,6 +46,18 @@ public class PaginaPrincipal extends BasePage{
     public void clickVistaRapida(){
         String xpathSection = String.format(PrincipalLocator.SELECCION_VISTA_RAPIDA,1,1);
         posarMouse(xpathSection);
+    }
+
+    public void validarProducto(){
+        Assert.assertEquals("El producto agregado no es el esperado", "Mug The best is yet to come", getText(PrincipalLocator.NOMBRE_PRODUCTO));
+    }
+
+    public void validarMontoTotal(){
+        int cantidad = Integer.parseInt(extractNumeric(getText(PrincipalLocator.CANTIDAD)));
+        double precio = Double.parseDouble(extractNumeric(getText(PrincipalLocator.PRECIO_PRODUCTO)));
+        double monto = cantidad*precio;
+        System.out.println(cantidad +"-"+precio+"-" + monto);
+        Assert.assertEquals("El monto no es el esperado", 11.9, monto,0.01);
     }
 
 }
